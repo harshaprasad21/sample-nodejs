@@ -40,7 +40,7 @@ jobs:
     # Step 8: Copy files to EC2
     - name: Copy files to EC2
       run: |
-        scp -i ~/.ssh/id_rsa -r ~/\*.js ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
+        scp -i ~/.ssh/id_rsa -r /home/runner/work/Nodejs/Nodejs/\*.js ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
 
 
     
