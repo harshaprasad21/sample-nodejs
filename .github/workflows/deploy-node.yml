@@ -25,33 +25,20 @@ jobs:
       run: |
         npm install
 
-    
-
-    
-
-    # Step 7: Setup SSH for deployment
+    # Step 4: Setup SSH for deployment
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-    # step find package.json
-    - name: Find package.json path
-      id: find_package
-      run: echo "PACKAGE_PATH=$(find ${{ github.workspace }} -type f -name 'package.json' | head -n 1)" >> $GITHUB_ENV
-    - name: Debug package.json path
-      run: echo "Found package.json at $PACKAGE_PATH"
-   
-    # Step 8: Copy files to EC2
+    
+    # Step 5: Copy files to EC2
     - name: Copy files to EC2
       run: |
-        scp -i ~/.ssh/id_rsa -r /home/runner/work/Nodejs/Nodejs/\*.js ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
-
-
-    
-
-    # Step 9: Start or Restart the app using PM2
+        scp -i ~/.ssh/id_rsa -r /home/runner/work/sample-nodejs/sample-nodejs/* ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
+        
+    # Step 6: Start or Restart the app using PM2
     - name: Start the app using PM2
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} "cd /home/ubuntu && pm2 start index.js --name 'node-app' || pm2 restart node-app"
