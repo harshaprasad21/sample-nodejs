@@ -36,7 +36,7 @@ jobs:
     # Step 5: Copy files to EC2
     - name: Copy files to EC2
       run: |
-        scp -i ~/.ssh/id_rsa -r /home/runner/work/sample-nodejs/sample-nodejs/* ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
+        scp -i ~/.ssh/id_rsa /home/runner/work/sample-nodejs/sample-nodejs/app.js /home/runner/work/sample-nodejs/sample-nodejs/index.js /home/runner/work/sample-nodejs/sample-nodejs/package.json /home/runner/work/sample-nodejs/sample-nodejs/yarn.lock ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu
         
     # Step 6: Start or Restart the app using PM2
     - name: Start the app using PM2
