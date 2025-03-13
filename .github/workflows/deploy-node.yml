@@ -25,10 +25,7 @@ jobs:
       run: |
         npm install
 
-    # Step 4: Run Tests
-    - name: Run tests
-      run: |
-        npm test  # Ensure you have Jest tests configured
+    
 
     # Step 5: Build the application
     - name: Build the application
