@@ -42,4 +42,4 @@ jobs:
     # Step 9: Start or Restart the app using PM2
     - name: Start the app using PM2
       run: |
-        ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} "cd /home/ubuntu/nodejs && pm2 start server.js --name 'node-app' || pm2 restart node-app"
+        ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.EC2_HOST }} "cd /home/ubuntu && pm2 start index.js --name 'node-app' || pm2 restart node-app"
