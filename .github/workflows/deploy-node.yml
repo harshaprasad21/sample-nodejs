@@ -27,15 +27,7 @@ jobs:
 
     
 
-    # Step 5: Build the application
-    - name: Build the application
-      run: |
-        npm run build  # Ensure this step exists in package.json
-
-    # Step 6: Verify build output
-    - name: Verify build output
-      run: |
-        ls -R dist
+    
 
     # Step 7: Setup SSH for deployment
     - name: Setup SSH
@@ -45,10 +37,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-    # Step 8: Copy files to EC2
-    - name: Copy files to EC2
-      run: |
-        scp -i ~/.ssh/id_rsa -r dist/* ubuntu@${{ secrets.EC2_HOST }}:/home/ubuntu/nodejs
+    
 
     # Step 9: Start or Restart the app using PM2
     - name: Start the app using PM2
