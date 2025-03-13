@@ -9,7 +9,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     
-    steps:
+    steps: 
     # Step 1: Checkout the latest code
     - name: Checkout the code
       uses: actions/checkout@v2
